@@ -1,39 +1,47 @@
-const calcular = document.getElementById('calcular');
+
+
+const calcular =document.getElementById('calcular');
 
 function imc(){
-const nome = document.getElementById('nome').value;
-const altura = document.getElementById('altura').value;
-const peso = document.getElementById('peso').value;
-const resultado = document.getElementById();
- 
-if(nome !==''&& altura !==''&& peso !==''){
-    const valorIMC=(peso/(altura*altura)).toFixed(1);
-
-    let classificacao = '';
-    
-    if(valorIMC < 18.5){
-        classificacao = 'abaixo do peso';
+    const vida = document.getElementById('vida').value; 
+    const dano = document.getElementById('dano').value;
+    const critico = document.getElementById('critico').value; 
+    const resultado = document.getElementById('resultado');
 
 
+    if(vida !==''&& dano !==''&& critico !==''){
+     
+        const vida = (dano* 30 + critico *30).toFixed(1);
 
-    }else if(valor<25){
-     classificacao = 'com peso normal';
+        const valorIMC=((dano-vida)*critico).toFixed(1);
 
-    }else if(valorIMC < 30){
-        classificacao = 'levemente acima do peso';
+        let classificacao = '';
+        if(valorIMC<30){
+            classificacao = 'vida boa';
 
-    }else if (valor<35){
-        classificacao = 'obesidade grau 1';
- 
-    }else if (valorIMC<40){
-        classificacao = 'obesidade grau 2';
+        }else if(valorIMC < 25){
+            classificacao = 'vida media';
 
-    }else {
-        classificacao = ' talvez um pouco de medo';
+        }else if(valorIMC <20){
+            classificacao = 'vida baixa';
+
+        }else if(valorIMC<15){
+            classificacao = 'quase morto';
+
+        }else if(valorIMC<10){
+            classificacao = 'com o pe na cova';
+
+        }else {
+            classificacao = 'morto';
+        }
+        resultado.textContent = `${vida} voce esta ${valorIMC} 
+        e voce está ${classificacao}`;
+
     }
-      resultado.textContent = `${nome} seu IMC e ${valorIMC} e vc esta ${classificacao}`;
-     }else  {
-    resultado.textContent = ' preencha todos os campos';  
-     }
-     }
-     calcular.addEventListener('click', imc);
+    else {
+        resultado.textContent = 'Preencha todos  os campos';
+    }
+
+
+}
+calcular.addEventListener('click', imc);
